@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+{% block title %}liste picto TODO{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="main">
+            {% for id, colors in dominantColors %}
+                <div id="{{ id }}" class="logo" style="position: relative; height: 1500px ">
+                    <canvas class="canvasA" data-color="{{ colors.0 }}" width="1124" height="1405" style="display: none"></canvas>
+                    <canvas class="canvasB" data-color="{{ colors.1 }}" width="1124" height="1405" style="display: none"></canvas>
+                    <canvas class="canvasC" data-color="{{ colors.2 }}" width="1124" height="1405" style="display: none"></canvas>
+                    <canvas class="finalCanvas" width="1123" height="1404"></canvas>
+                </div>
+            {% endfor %}
+            <script>
+                $('.logo').each(function () {
+                    var id = $(this).attr('id');
+                    var canvasA = $(this).find('.canvasA');
+                    var contextA = canvasA.get(0).getContext('2d');
+                    var colorA = canvasA.data('color');
+                    var canvasB = $(this).find('.canvasB');
+                    var contextB = canvasB.get(0).getContext('2d');
+                    var colorB = canvasB.data('color');
+                    var canvasC = $(this).find('.canvasC');
+                    var contextC = canvasC.get(0).getContext('2d');
+                    var colorC = canvasC.data('color');
+
+                    // A triangles
+                    contextA.beginPath();
+                    contextA.fillStyle = 'rgb(' + colorA + ')';
+                    contextA.moveTo(0, 0);
+                    contextA.lineTo(737, 0);
+                    contextA.lineTo(217, 208);
+
+                    contextA.moveTo(217, 208);
+                    contextA.lineTo(357, 572);
+                    contextA.lineTo(813, 436);
+
+                    contextA.moveTo(813, 436);
+                    contextA.lineTo(1123, 0);
+                    contextA.lineTo(1123, 485);
+
+                    contextA.moveTo(357, 572);
+                    contextA.lineTo(0, 640);
+                    contextA.lineTo(228, 966);
+
+                    contextA.moveTo(813, 436);
+                    contextA.lineTo(636, 844);
+                    contextA.lineTo(1123, 782);
+
+                    contextA.moveTo(228, 966);
+                    contextA.lineTo(0, 1171);
+                    contextA.lineTo(559, 1404);
+
+                    contextA.moveTo(559, 1404);
+                    contextA.lineTo(636, 844);
+                    contextA.lineTo(905, 1125);
+
+                    contextA.closePath();
+                    contextA.fill();
+
+                    // B triangles
+                    contextB.beginPath();
+                    contextB.fillStyle = 'rgb(' + colorB + ')';
+                    contextB.moveTo(0, 0);
+                    contextB.lineTo(0, 640);
+                    contextB.lineTo(217, 208);
+
+                    contextB.moveTo(217, 208);
+                    contextB.lineTo(737, 0);
+                    contextB.lineTo(813, 436);
+
+                    contextB.moveTo(813, 436);
+                    contextB.lineTo(1123, 485);
+                    contextB.lineTo(1123, 782);
+
+                    contextB.moveTo(357, 572);
+                    contextB.lineTo(636, 844);
+                    contextB.lineTo(228, 966);
+
+                    contextB.moveTo(905, 1125);
+                    contextB.lineTo(1123, 1171);
+                    contextB.lineTo(1123, 782);
+
+                    contextB.closePath();
+                    contextB.fill();
+
+                    // C triangles
+                    contextC.beginPath();
+                    contextC.fillStyle = 'rgb(' + colorC + ')';
+                    contextC.moveTo(0, 640);
+                    contextC.lineTo(357, 572);
+                    contextC.lineTo(217, 208);
+
+                    contextC.moveTo(737, 0);
+                    contextC.lineTo(1123, 0);
+                    contextC.lineTo(813, 436);
+
+                    contextC.moveTo(813, 436);
+                    contextC.lineTo(357, 572);
+                    contextC.lineTo(636, 844);
+
+                    contextC.moveTo(0, 1171);
+                    contextC.lineTo(0, 640);
+                    contextC.lineTo(228, 966);
+
+                    contextC.moveTo(228, 966);
+                    contextC.lineTo(636, 844);
+                    contextC.lineTo(559, 1404);
+
+                    contextC.moveTo(636, 844);
+                    contextC.lineTo(905, 1125);
+                    contextC.lineTo(1123, 782);
+
+                    contextC.moveTo(559, 1404);
+                    contextC.lineTo(1123, 1171);
+                    contextC.lineTo(905, 1125);
+
+                    contextC.closePath();
+                    contextC.fill();
+
+                    // Full image
+                    var finalCanvas = $(this).find('.finalCanvas');
+                    var finalContext = finalCanvas.get(0).getContext('2d');
+                    finalContext.drawImage(canvasA.get(0), 0, 0);
+                    finalContext.drawImage(canvasB.get(0), 0, 0);
+                    finalContext.drawImage(canvasC.get(0), 0, 0);
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}
