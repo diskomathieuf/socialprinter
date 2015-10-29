@@ -92,8 +92,20 @@ $app->get('/choose-picto/', function (Silex\Application $app) {
         array(
             'dominantColors' => $dominantColors,
         )
-    );;
+    );
 })
     ->bind('choose-picto');
+
+$app->get('/print-it/{id}', function (Silex\Application $app, $id) {
+    $dominantColors = $app['session']->get('dominant_colors');
+    return $app['twig']->render(
+        'print-it.html.twig',
+        array(
+            'colors' => $dominantColors[$id],
+            'id' => $id,
+        )
+    );;
+})
+    ->bind('print-it');
 
 $app->run();

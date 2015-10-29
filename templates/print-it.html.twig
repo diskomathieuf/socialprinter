@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
-{% block title %}liste picto TODO{% endblock %}
+{% block title %}print it TODO{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="main">
-
-        </div>
+    <div class="main">
+        {% include 'canvas-picto.html.twig' %}
+        {% include 'draw-picto.js.twig' %}
     </div>
 {% endblock %}

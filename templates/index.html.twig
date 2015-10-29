@@ -1,16 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <header class="clearfix">
-            <h1>Instagram <span>display your photo stream</span></h1>
-        </header>
-        <div class="main">
-            <ul class="grid">
-                <li>
-                    <a class="login" href="{{ loginUrl }}">» Login with Instagram</a>
-                    <h4>Use your Instagram account to login.</h4>
-                </li>
-            </ul>
-        </div>
+    <h1>Instagram <span>display your photo stream</span></h1>
+    <div class="main">
+        <ul class="grid">
+            <li>
+                <a class="login" href="{{ loginUrl }}">» Login with Instagram</a>
+                <h4>Use your Instagram account to login.</h4>
+            </li>
+        </ul>
     </div>
 {% endblock %}
