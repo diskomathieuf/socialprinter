@@ -13,8 +13,15 @@ $app['insta'] = new MetzWeb\Instagram\Instagram(array(
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/../templates',
+    'twig.path' => __DIR__ . '/templates',
 ));
+
+$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+    $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($app) {
+        return sprintf('%s/%s', trim($app['request']->getBasePath()), ltrim($asset, '/'));
+    }));
+    return $twig;
+}));
 
 // ROUTES
 $app->get('/', function (Silex\Application $app) {
