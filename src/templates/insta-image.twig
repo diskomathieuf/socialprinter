@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.twig' %}
 {% block title %}liste photo TODO{% endblock %}
 {% block body %}
     <div class="main">
         {% for media in medias %}
-            <a href="{{ app.url_generator.generate('choose-picto') }}">
+            <a href="{{ app.url_generator.generate('choose-logo') }}">
                 <img class="media" src="{{ media.images.low_resolution.url }}"/>
                 {% for color in media.colors %}
                     <div style="background-color: rgb({{ color }}); width: 70px; height: 45px;"></div>

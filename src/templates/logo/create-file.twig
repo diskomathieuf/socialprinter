@@ -1,0 +1,13 @@
+<script>
+    var finalCanvas = $('.finalCanvas');
+    var canvasData = finalCanvas.get(0).toDataURL();
+
+    $.ajax({
+        type: "POST",
+        url: "/save-picture",
+        beforeSend: function (xhr) {
+            xhr.overrideMimeType("application/upload; charset=x-user-defined");
+        },
+        data: {picture: canvasData, id: '{{ id }}'}
+    });
+</script>

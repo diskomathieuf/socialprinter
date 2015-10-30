@@ -1,0 +1,20 @@
+{% extends 'base.twig' %}
+{% block title %}liste picto TODO{% endblock %}
+{% block body %}
+        <div class="main">
+            {% if dominantColors is not empty %}
+                {% for id, colors in dominantColors %}
+                    <a href="{{ app.url_generator.generate('print-it', {'id': id  }) }}">
+                        {% include 'logo/generate-canvas.twig' %}
+                    </a>
+                {% endfor %}
+                {% include 'logo/draw.twig' %}
+            {% else %}
+                {% for i in 1..4 %}
+                    <a href="{{ app.url_generator.generate('print-it', {'id': i  }) }}">
+                        <img src="{{ app.request.baseUrl }}/images/logo-{{ i }}.png" />
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+{% endblock %}
