@@ -4,17 +4,27 @@
     {% form_theme form 'form/fields.twig' %}
 {% endif %}
 
-{% block title %}print it TODO{% endblock %}
-{% block body %}
-    <div class="main">
-        {% if colors is empty %}
-            <img src="{{ app.request.baseUrl }}/images/logo-{{ id }}.png" />
+{% block title %}Votre logo{% endblock %}
+
+{% block top %}
+    <h1>Votre <span class="gl-orange">logo</span></h1>
+    <div>Et voilà ! Vous pouvez maintenant imprimer le logo qui vous correspond</div>
+{% endblock %}
+
+{% block content %}
+    {% if colors is empty %}
+        <img src="{{ app.request.baseUrl }}/images/logo-{{ id }}.png"/>
+        <div class="right-block">
+            <h2><span>Safisfait ?</span></h2>
             {{ form(form, {'action': path('print-it', {'id': id  }), 'method': 'POST'}) }}
-        {% else %}
-            {% include 'logo/generate-canvas.twig' %}
+        </div>
+    {% else %}
+        {% include 'logo/generate-canvas.twig' %}
+        {% include 'logo/draw.twig' %}
+        {% include 'logo/create-file.twig' %}
+        <div class="right-block">
+            <h2><span>Satisfait ?</span></h2>
             {{ form(form, {'action': path('print-it', {'id': id  }), 'method': 'POST'}) }}
-            {% include 'logo/draw.twig' %}
-            {% include 'logo/create-file.twig' %}
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -144,11 +144,12 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
             'constraints' => array(new Assert\NotNull()),
             'attr'        => array('class' => 'form-control'),
             'choices'     => array('s' => 'S', 'm' => 'M', 'l' => 'L'),
-            'label'       => 'Taille'
+            'expanded' => true,
+            'label'       => ''
         ))
         ->add('validate', 'submit', array(
             'attr'  => array('class' => 'btn btn-default'),
-            'label' => 'Valider'
+            'label' => 'Imprimer'
         ))
         ->getForm();
 
@@ -163,8 +164,8 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
         );
 
         try {
-            $png = empty($dominantColors) ? __DIR__.'/images/logo-'.$id.'.png' : '/tmp/' . $id . '.png';
-            $message = \Swift_Message::newInstance('smtp.gmail.com', 465)
+            $png = empty($dominantColors) ? __DIR__ . '/images/logo-' . $id . '.png' : '/tmp/' . $id . '.png';
+            $message = \Swift_Message::newInstance()
                 ->setSubject('Votre T-shirt est prêt !')
                 ->setFrom(array($data['email'] => $data['name']))
                 ->setTo(array($app['printerMail'], $data['email']))

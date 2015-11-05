@@ -1,13 +1,13 @@
 <script>
     $('.logo').each(function () {
         var id = $(this).attr('id');
-        var canvasA = $(this).find('.canvasA');
+        var canvasA = $(this).find('.canvas-a');
         var contextA = canvasA.get(0).getContext('2d');
         var colorA = canvasA.data('color');
-        var canvasB = $(this).find('.canvasB');
+        var canvasB = $(this).find('.canvas-b');
         var contextB = canvasB.get(0).getContext('2d');
         var colorB = canvasB.data('color');
-        var canvasC = $(this).find('.canvasC');
+        var canvasC = $(this).find('.canvas-c');
         var contextC = canvasC.get(0).getContext('2d');
         var colorC = canvasC.data('color');
 
@@ -106,7 +106,7 @@
         contextC.fill();
 
         // Full image
-        var finalCanvas = $(this).find('.finalCanvas');
+        var finalCanvas = $(this).find('.final-canvas');
         var finalContext = finalCanvas.get(0).getContext('2d');
         finalContext.drawImage(canvasA.get(0), 0, 0);
         finalContext.drawImage(canvasB.get(0), 0, 0);

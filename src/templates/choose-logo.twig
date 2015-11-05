@@ -1,20 +1,47 @@
 {% extends 'base.twig' %}
-{% block title %}liste picto TODO{% endblock %}
-{% block body %}
-        <div class="main">
-            {% if dominantColors is not empty %}
-                {% for id, colors in dominantColors %}
-                    <a href="{{ app.url_generator.generate('print-it', {'id': id  }) }}">
+{% block title %}À vous de choisir{% endblock %}
+
+{% block top %}
+    <h1>À vous de <span class="gl-orange">choisir</span></h1>
+    <div>Choisissez le look qui vous correspond</div>
+{% endblock %}
+
+{% block content %}
+    <ul class="logo-list">
+        {% if dominantColors is not empty %}
+            {% for id, colors in dominantColors %}
+                <li>
+                    <a href="{{ app.url_generator.generate('print-it', {'id': id }) }}">
                         {% include 'logo/generate-canvas.twig' %}
                     </a>
-                {% endfor %}
-                {% include 'logo/draw.twig' %}
-            {% else %}
-                {% for i in 1..4 %}
-                    <a href="{{ app.url_generator.generate('print-it', {'id': i  }) }}">
-                        <img src="{{ app.request.baseUrl }}/images/logo-{{ i }}.png" />
-                    </a>
-                {% endfor %}
-            {% endif %}
-        </div>
+                </li>
+            {% endfor %}
+            {% include 'logo/draw.twig' %}
+        {% else %}
+            <li>
+                <a href="{{ app.url_generator.generate('print-it', {'id': 1}) }}">
+                    <img class="logo" src="{{ app.request.baseUrl }}/images/logo-1.png"/>
+                </a>
+                <br/><br/>|<br/><br/>ACCESSOIRE<br />& BEAUTÉ
+            </li>
+            <li>
+                <a href="{{ app.url_generator.generate('print-it', {'id': 2}) }}">
+                    <img class="logo" src="{{ app.request.baseUrl }}/images/logo-2.png"/>
+                </a>
+                <br/><br/>|<br/><br/>URBAN STREET SPORT<br />& CHAUSSURES
+            </li>
+            <li>
+                <a href="{{ app.url_generator.generate('print-it', {'id': 3}) }}">
+                    <img class="logo" src="{{ app.request.baseUrl }}/images/logo-3.png"/>
+                </a>
+                <br/><br/>|<br/><br/>CASUAL & PREPPY
+            </li>
+            <li>
+                <a href="{{ app.url_generator.generate('print-it', {'id': 4}) }}">
+                    <img class="logo" src="{{ app.request.baseUrl }}/images/logo-4.png"/>
+                </a>
+                <br/><br/>|<br/><br/>FORMEL & LUXE
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}

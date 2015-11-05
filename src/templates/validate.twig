@@ -1,11 +1,12 @@
 {% extends 'base.twig' %}
-{% block body %}
-    <h1>Instagram <span>display your photo stream</span></h1>
-    <div class="main">
-        <ul class="grid">
-            <li>
-                <a class="logout" href="{{ app.url_generator.generate('index') }}">Logout</a>
-            </li>
-        </ul>
-    </div>
+
+{% block title %}Votre T-shirt est prêt !{% endblock %}
+
+{% block top %}
+    <h1>Votre <span class="gl-orange">T-shirt est prêt !</span></h1>
+    <div>Venez le récupérer directement à l'imprimante</div>
+{% endblock %}
+
+{% block content %}
+    <a class="logout" href="{{ app.url_generator.generate('index') }}">Se déconnecter</a>
 {% endblock %}
