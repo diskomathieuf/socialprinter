@@ -6868,7 +6868,8 @@ body .gl-orange {
   -o-background-size: cover;
   -webkit-background-size: cover;
 }
-.index #header {
+.index #header,
+.index .back {
   display: none;
 }
 .print-it img,
@@ -6920,6 +6921,11 @@ body .gl-orange {
   opacity: 0.5;
   margin-right: 13px;
 }
+.print-it .main .left-block .size-select .error {
+  border: 2px solid #B60400;
+  color: #B60400;
+  font-weight: bold;
+}
 .print-it .main .right-block {
   position: relative;
   text-align: center;
@@ -6958,6 +6964,29 @@ body .gl-orange {
 }
 .print-it .main .right-block form #form_size {
   display: none;
+}
+.validate {
+  background: #ffffff url(../../../images/tshirt.png) no-repeat right top;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+}
+.validate .back {
+  display: none;
+}
+.validate img,
+.validate .final-canvas {
+  width: 45px;
+  border: none;
+  padding: 0;
+  position: absolute;
+  left: 540px;
+  top: 300px;
+}
+.validate .btn {
+  position: relative;
+  top: 380px;
 }
 @font-face {
   font-family: 'GLBaderJ';

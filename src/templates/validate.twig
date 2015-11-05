@@ -2,11 +2,20 @@
 
 {% block title %}Votre T-shirt est prêt !{% endblock %}
 
+{% block additional_class %}validate{% endblock %}
+
 {% block top %}
     <h1>Votre <span class="gl-orange">T-shirt est prêt !</span></h1>
     <div>Venez le récupérer directement à l'imprimante</div>
 {% endblock %}
 
 {% block content %}
-    <a class="logout" href="{{ app.url_generator.generate('index') }}">Se déconnecter</a>
+    {% if colors is empty %}
+        <img src="{{ app.request.baseUrl }}/images/logo-{{ id }}.png" />
+    {% else %}
+        {% include 'logo/generate-canvas.twig' %}
+        {% include 'logo/draw.twig' %}
+        {% include 'logo/create-file.twig' %}
+    {% endif %}
+    <a class="btn logout" href="{{ app.url_generator.generate('index') }}">Se déconnecter</a>
 {% endblock %}

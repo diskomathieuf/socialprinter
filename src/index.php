@@ -10,12 +10,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 $app = new Silex\Application();
 if ($_SERVER['HTTP_HOST'] === 'socialprinter.localhost') $app['debug'] = true;
 
+/* config.php contains instagram config and mail recepient
+<?php
 $app['insta'] = new MetzWeb\Instagram\Instagram(array(
-    'apiKey'      => '8fdab76ee73e41a18e8d6286021c69f6',
-    'apiSecret'   => '87c023f0969f4134a7a97727a880e595',
-    'apiCallback' => 'http://socialprinter.localhost/insta-image'
+'apiKey'      => '8fdaffffffffffffffffffff021c69f6',
+'apiSecret'   => '87c023ffffffffffffffffffa880e595',
+'apiCallback' => 'http://socialprinter.localhost/insta-image'
 ));
-$app['printerMail'] = 'mathieu.yvan@disko.fr';
+$app['printerMail'] = 'mail@host.com';
+*/
+require_once '../config.php';
 
 $app->register(new Silex\Provider\SwiftmailerServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
@@ -144,7 +148,7 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
             'constraints' => array(new Assert\NotNull()),
             'attr'        => array('class' => 'form-control'),
             'choices'     => array('s' => 'S', 'm' => 'M', 'l' => 'L'),
-            'expanded' => true,
+            'expanded'    => true,
             'label'       => false
         ))
         ->add('validate', 'submit', array(
@@ -175,18 +179,25 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
 
             $app['mailer']->send($message);
             $sent = true;
+        } catch (Swift_TransportException $ste) {
+            $sent = false;
+            echo 'error';
         } catch (Exception $e) {
             $sent = false;
             echo 'error';
         }
     }
+    $colors = isset($dominantColors[$id]) ? $dominantColors[$id] : null;
 
     if ($sent) {
         return $app['twig']->render(
-            'validate.twig'
+            'validate.twig',
+            array(
+                'colors' => $colors,
+                'id'     => $id,
+            )
         );
     } else {
-        $colors = isset($dominantColors[$id]) ? $dominantColors[$id] : null;
         return $app['twig']->render(
             'print-it.twig',
             array(

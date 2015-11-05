@@ -121,7 +121,7 @@ body {
   -o-background-size: cover;
   -webkit-background-size: cover;
 
-  #header {
+  #header, .back {
     display: none;
   }
 }
@@ -165,8 +165,8 @@ body {
       }
 
       .final-canvas {
-         position: relative;
-         left: 0;
+        position: relative;
+        left: 0;
       }
 
       .size-select {
@@ -182,6 +182,12 @@ body {
           line-height: 45px;
           opacity: 0.5;
           margin-right: 13px;
+        }
+
+        .error {
+          border: 2px solid #B60400;
+          color: #B60400;
+          font-weight: bold;
         }
       }
     }
@@ -233,5 +239,32 @@ body {
         }
       }
     }
+  }
+}
+
+.validate {
+  background: #fff url(../../../images/tshirt.png) no-repeat right top;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+
+  .back {
+    display: none;
+  }
+
+  img,
+  .final-canvas {
+    width: 45px;
+    border: none;
+    padding: 0;
+    position: absolute;
+    left: 540px;
+    top: 300px;
+  }
+
+  .btn {
+    position: relative;
+    top: 380px;
   }
 }

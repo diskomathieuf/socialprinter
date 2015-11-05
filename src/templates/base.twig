@@ -7,11 +7,9 @@
     {% endblock %}
     <link href="{{ asset('../skin/dist/css/bootstrap.css') }}" rel="stylesheet">
 </head>
-<body class="{{ app.request.get('_route') }}">
+<body class="{{ app.request.get('_route') }} {% block additional_class %}{% endblock %}">
     <div id="header">
-        {% block back_to_index %}
-            <a class="back gl-orange" href="{{ app.url_generator.generate('index') }}">Revenir à l'accueil</a>
-        {% endblock back_to_index %}
+        <a class="back gl-orange" href="{{ app.url_generator.generate('index') }}">Revenir à l'accueil</a>
         {% block top %}
         {% endblock top %}
     </div>
