@@ -153,6 +153,38 @@ body {
   }
 
   .main {
+    .left-block {
+      position: absolute;
+      width: 50%;
+      left: 80px;
+
+      img {
+        display: inline-block;
+        position: relative;
+        left: 0;
+      }
+
+      .final-canvas {
+         position: relative;
+         left: 0;
+      }
+
+      .size-select {
+        display: inline-block;
+        margin-top: 28px;
+
+        span {
+          border: solid 1px #000;
+          width: 45px;
+          height: 45px;
+          display: inline-block;
+          font-size: 22px;
+          line-height: 45px;
+          opacity: 0.5;
+          margin-right: 13px;
+        }
+      }
+    }
     .right-block {
       position: relative;
       text-align: center;
@@ -189,24 +221,16 @@ body {
       form {
         .form-group {
           text-align: left;
-
-          &:nth-child(4) {
-            position: relative;
-            top: 110px;
-            right: 420px;
-          }
-        }
-        div:nth-child(5) {
-          position: relative;
-          top: 110px;
-          right: 420px;
         }
 
         .btn {
+          margin-top: 40px;
           width: 100%;
         }
 
-
+        #form_size {
+          display: none;
+        }
       }
     }
   }

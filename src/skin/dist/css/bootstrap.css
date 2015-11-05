@@ -6892,6 +6892,34 @@ body .gl-orange {
   border: none;
   box-shadow: none;
 }
+.print-it .main .left-block {
+  position: absolute;
+  width: 50%;
+  left: 80px;
+}
+.print-it .main .left-block img {
+  display: inline-block;
+  position: relative;
+  left: 0;
+}
+.print-it .main .left-block .final-canvas {
+  position: relative;
+  left: 0;
+}
+.print-it .main .left-block .size-select {
+  display: inline-block;
+  margin-top: 28px;
+}
+.print-it .main .left-block .size-select span {
+  border: solid 1px #000;
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 45px;
+  opacity: 0.5;
+  margin-right: 13px;
+}
 .print-it .main .right-block {
   position: relative;
   text-align: center;
@@ -6924,18 +6952,12 @@ body .gl-orange {
 .print-it .main .right-block form .form-group {
   text-align: left;
 }
-.print-it .main .right-block form .form-group:nth-child(4) {
-  position: relative;
-  top: 110px;
-  right: 420px;
-}
-.print-it .main .right-block form div:nth-child(5) {
-  position: relative;
-  top: 110px;
-  right: 420px;
-}
 .print-it .main .right-block form .btn {
+  margin-top: 40px;
   width: 100%;
+}
+.print-it .main .right-block form #form_size {
+  display: none;
 }
 @font-face {
   font-family: 'GLBaderJ';

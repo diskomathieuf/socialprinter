@@ -145,7 +145,7 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
             'attr'        => array('class' => 'form-control'),
             'choices'     => array('s' => 'S', 'm' => 'M', 'l' => 'L'),
             'expanded' => true,
-            'label'       => ''
+            'label'       => false
         ))
         ->add('validate', 'submit', array(
             'attr'  => array('class' => 'btn btn-default'),

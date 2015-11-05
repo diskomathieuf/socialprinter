@@ -12,19 +12,33 @@
 {% endblock %}
 
 {% block content %}
-    {% if colors is empty %}
-        <img src="{{ app.request.baseUrl }}/images/logo-{{ id }}.png"/>
-        <div class="right-block">
-            <h2><span>Safisfait ?</span></h2>
-            {{ form(form, {'action': path('print-it', {'id': id  }), 'method': 'POST'}) }}
+    <div class="left-block">
+        {% if colors is empty %}
+            <img src="{{ app.request.baseUrl }}/images/logo-{{ id }}.png" />
+        {% else %}
+            {% include 'logo/generate-canvas.twig' %}
+            {% include 'logo/draw.twig' %}
+            {% include 'logo/create-file.twig' %}
+        {% endif %}
+        <div class="size-select">
+            <span>S</span>
+            <span>M</span>
+            <span>L</span>
         </div>
-    {% else %}
-        {% include 'logo/generate-canvas.twig' %}
-        {% include 'logo/draw.twig' %}
-        {% include 'logo/create-file.twig' %}
-        <div class="right-block">
-            <h2><span>Satisfait ?</span></h2>
-            {{ form(form, {'action': path('print-it', {'id': id  }), 'method': 'POST'}) }}
-        </div>
-    {% endif %}
+    </div>
+    <div class="right-block">
+        <h2><span>Safisfait ?</span></h2>
+        {{ form(form, {'action': path('print-it', {'id': id  }), 'method': 'POST'}) }}
+    </div>
+
+    <script>
+        $('.size-select span').click(function() {
+            $('.size-select span').fadeTo( 100, 0.5 );
+            $(this).fadeTo( 100, 1 );
+
+            var size = $(this).text().toLowerCase();
+            var radios = $('input:radio[name="form[size]"]');
+                radios.filter('[value='+size+']').prop('checked', true);
+        });
+    </script>
 {% endblock %}
