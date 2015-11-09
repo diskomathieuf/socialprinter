@@ -6900,6 +6900,9 @@ body .logo-list li {
   margin-right: 30px;
   text-align: center;
 }
+body .logo-list li:last-child {
+  margin-right: 0;
+}
 body .final-canvas,
 body img {
   width: 200px;
@@ -7004,6 +7007,10 @@ body .gl-orange {
 }
 .print-it .main .right-block form .form-group {
   text-align: left;
+}
+.print-it .main .right-block form .form-group ul {
+  margin-left: 10px;
+  color: #b60400;
 }
 .print-it .main .right-block form .btn {
   width: 100%;

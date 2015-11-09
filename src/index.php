@@ -134,12 +134,12 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
 
     $form = $app['form.factory']->createBuilder('form', $default)
         ->add('name', 'text', array(
-            'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 3))),
+            'constraints' => new Assert\NotBlank(array('message' => '    Ce champ est obligatoire')),
             'attr'        => array('class' => 'form-control', 'placeholder' => 'Votre prénom',),
             'label'       => 'Prénom'
         ))
         ->add('email', 'email', array(
-            'constraints' => new Assert\Email(),
+            'constraints' => array(new Assert\Email(), new Assert\NotNull(array('message' => '    Ce champ est obligatoire'))),
             'attr'        => array('class' => 'form-control', 'placeholder' => 'Votre mail'),
             'label'       => 'Mail'
         ))
@@ -181,10 +181,8 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
             $sent = true;
         } catch (Swift_TransportException $ste) {
             $sent = false;
-            echo 'error';
         } catch (Exception $e) {
             $sent = false;
-            echo 'error';
         }
     }
     $colors = isset($dominantColors[$id]) ? $dominantColors[$id] : null;
