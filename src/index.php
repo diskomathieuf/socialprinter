@@ -134,12 +134,12 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
 
     $form = $app['form.factory']->createBuilder('form', $default)
         ->add('name', 'text', array(
-            'constraints' => new Assert\NotBlank(array('message' => '    Ce champ est obligatoire')),
+            'constraints' => new Assert\NotBlank(array('message' => 'Ce champ est obligatoire')),
             'attr'        => array('class' => 'form-control', 'placeholder' => 'Votre prénom',),
             'label'       => 'Prénom'
         ))
         ->add('email', 'email', array(
-            'constraints' => array(new Assert\Email(), new Assert\NotNull(array('message' => '    Ce champ est obligatoire'))),
+            'constraints' => array(new Assert\Email(array('message' => 'Ceci n\'est pas un email valide')), new Assert\NotNull(array('message' => 'Ce champ est obligatoire'))),
             'attr'        => array('class' => 'form-control', 'placeholder' => 'Votre mail'),
             'label'       => 'Mail'
         ))

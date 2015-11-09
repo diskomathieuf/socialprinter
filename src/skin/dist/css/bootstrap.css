@@ -6900,7 +6900,7 @@ body .logo-list li {
   margin-right: 30px;
   text-align: center;
 }
-body .logo-list li:last-child {
+body .logo-list li:last-of-type {
   margin-right: 0;
 }
 body .final-canvas,
