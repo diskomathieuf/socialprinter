@@ -169,11 +169,14 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
 
         try {
             $png = empty($dominantColors) ? __DIR__ . '/images/logo-' . $id . '.png' : '/tmp/' . $id . '.png';
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Votre T-shirt est prêt !')
-                ->setFrom(array($data['email'] => $data['name']))
+            $message_content = $app['twig']->render('email.template.twig',
+                array('name' => 'JustSteveKing', 'age' => 26));
+
+            $message = Swift_Message::newInstance()
+                ->setSubject('Christmas Party Homme – Galeries Lafayette Paris Haussmann')
+                ->setFrom(array($data['email'] => 'Galeries Lafayette Paris Haussmann'))
                 ->setTo(array($app['printerMail'], $data['email']))
-                ->setBody('Venez le récupérer directement à l\'imprimante')
+                ->setBody($message_content, 'text/html')
                 ->attach(Swift_Attachment::fromPath($png)->setFilename(join('_', $pictureInfo) . '.png')
                 );
 
