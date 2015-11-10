@@ -169,9 +169,7 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
 
         try {
             $png = empty($dominantColors) ? __DIR__ . '/images/logo-' . $id . '.png' : '/tmp/' . $id . '.png';
-            $message_content = $app['twig']->render('email.template.twig',
-                array('name' => 'JustSteveKing', 'age' => 26));
-
+            $message_content = $app['twig']->render('email.template.twig');
             $message = Swift_Message::newInstance()
                 ->setSubject('Christmas Party Homme – Galeries Lafayette Paris Haussmann')
                 ->setFrom(array($data['email'] => 'Galeries Lafayette Paris Haussmann'))
