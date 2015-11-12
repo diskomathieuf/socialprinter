@@ -172,7 +172,7 @@ $app->match('/print-it/{id}', function (Request $request, $id) use ($app) {
             $message_content = $app['twig']->render('email.template.twig');
             $message = Swift_Message::newInstance()
                 ->setSubject('Christmas Party Homme – Galeries Lafayette Paris Haussmann')
-                ->setFrom(array($data['email'] => 'Galeries Lafayette Paris Haussmann'))
+                ->setFrom(array('no-reply@social-printer.fr' => 'Galeries Lafayette Paris Haussmann'))
                 ->setTo(array($app['printerMail'], $data['email']))
                 ->setBody($message_content, 'text/html')
                 ->attach(Swift_Attachment::fromPath($png)->setFilename(join('_', $pictureInfo) . '.png')
